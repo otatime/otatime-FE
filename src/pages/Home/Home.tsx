@@ -1,8 +1,15 @@
 import Card from './Card'
+import HomeNav from './HomeNav'
+
+const imageList = [
+  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80',
+  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80',
+]
 
 export default function Home() {
   return (
-    <div className="w-[1704px] h-[1228px] bg-neutral-900 rounded-tl-2xl rounded-tr-2xl">
+    <div className="w-426 h-307 px-7 py-5 bg-neutral-900 ">
       {/* 카테고리 탭 */}
       <nav className="flex gap-2 mb-4">
         <button className="px-4 py-1 rounded bg-blue-500 text-white">
@@ -15,6 +22,10 @@ export default function Home() {
           게임
         </button>
       </nav>
+      <HomeNav
+        images={imageList}
+        className="w-full mx-auto h-72 overflow-hidden rounded-lg bg-black"
+      />
 
       {/* 광고 배너 */}
       <div className="flex justify-center mb-6">
