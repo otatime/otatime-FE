@@ -1,19 +1,46 @@
-export default function Card() {
+import { DateBadge } from '@/components'
+
+interface CardProps {
+  title: string
+  date: { start: string; end: string }
+  description: string
+  tags: string[]
+  image: string
+}
+
+export default function Card({
+  title,
+  date,
+  description,
+  tags,
+  image,
+}: CardProps) {
   return (
-    <div className="w-[548px] h-72 bg-neutral-800 rounded-[10px] border border-zinc-800">
+    <div className="w-137 h-72 bg-neutral-800 rounded-[10px] border border-zinc-800">
       <div>
         <img
-          className="w-[548px] h-28 rounded-tl-[10px] rounded-tr-[10px]"
-          src="https://placehold.co/548x111"
+          className="w-137 h-28 rounded-tl-[10px] rounded-tr-[10px]"
+          src={`${image}`}
         />
       </div>
-      <div className="justify-start text-white text-base font-bold font-['Inter']">
-        SPY×FAMILY - 2025년 8월 9일부터 개최! (가상)
-      </div>
-      <div>{/* 날짜 */}</div>
-      <div className="w-[488px] justify-start text-neutral-400 text-sm font-normal font-['Inter']">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
+      <div className="flex justify-start flex-col gap-2 p-2">
+        <h2 className=" text-white text-base font-bold font-['Inter']">
+          {title}
+        </h2>
+        <div className="flex justify-start items-center gap-1">
+          <DateBadge date={date.start} />
+          <span className="text-gray-300 text-neutral-400 text-sm font-normal font-['Inter']">
+            부터
+          </span>
+          <DateBadge date={date.end} />
+          <span className="text-gray-300 text-neutral-400 text-sm font-normal font-['Inter']">
+            까지
+          </span>
+        </div>
+        <div className="w-122 justify-start text-neutral-400 text-sm font-normal font-['Inter']">
+          {description}
+        </div>
+        <div>{tags.map((tag) => tag)}</div>
       </div>
 
       {/*태그 */}

@@ -1,4 +1,4 @@
-import DateBadge from '@/components/DateBadge'
+import { DateBadge } from '@/components'
 import dayjs from 'dayjs'
 import React, { useEffect, useRef, useState } from 'react'
 

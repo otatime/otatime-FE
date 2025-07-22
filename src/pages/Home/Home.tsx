@@ -7,6 +7,33 @@ const imageList = [
   'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80',
 ]
 
+const cardList = [
+  {
+    title: 'SPY×FAMILY - 2025년 8월 9일부터 개최! (가상)',
+    date: { start: '2025년 8월 9일', end: '2025년 8월 9일' },
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    tags: ['애니메이션', '게임'],
+    image: 'https://placehold.co/548x111',
+  },
+  {
+    title: 'SPY×FAMILY - 2025년 8월 9일부터 개최! (가상)',
+    date: { start: '2025년 8월 9일', end: '2025년 8월 9일' },
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    tags: ['애니메이션', '게임'],
+    image: 'https://placehold.co/548x111',
+  },
+  {
+    title: 'SPY×FAMILY - 2025년 8월 9일부터 개최! (가상)',
+    date: { start: '2025년 8월 9일', end: '2025년 8월 9일' },
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    tags: ['애니메이션', '게임'],
+    image: 'https://placehold.co/548x111',
+  },
+]
+
 export default function Home() {
   return (
     <div className="w-426 h-307 px-7 py-5 bg-neutral-900 ">
@@ -39,9 +66,16 @@ export default function Home() {
       <section>
         <h2 className="text-lg font-bold mb-4">행사 정보</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <Card />
-          <Card />
-          <Card />
+          {cardList.map((card, idx) => (
+            <Card
+              key={idx}
+              title={card.title}
+              date={card.date}
+              description={card.description}
+              tags={card.tags}
+              image={card.image}
+            />
+          ))}
         </div>
       </section>
     </div>
