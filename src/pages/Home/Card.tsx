@@ -23,7 +23,7 @@ export default function Card({
           src={`${image}`}
         />
       </div>
-      <div className="flex justify-start flex-col gap-2 p-2">
+      <div className="flex justify-start flex-col gap-3 p-2">
         <h2 className=" text-white text-base font-bold font-['Inter']">
           {title}
         </h2>

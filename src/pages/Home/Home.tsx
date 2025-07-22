@@ -55,8 +55,8 @@ export default function Home() {
       />
 
       {/* 광고 배너 */}
-      <div className="flex justify-center mb-6">
-        <div>
+      <div className="w-full h-24 flex justify-center items-center">
+        <div className="text-white text-sm font-normal font-['Inter']">
           Test Ad
           <br />
         </div>
@@ -64,7 +64,10 @@ export default function Home() {
 
       {/* 행사 정보 */}
       <section>
-        <h2 className="text-lg font-bold mb-4">행사 정보</h2>
+        <h2 className="h-10 px-5 justify-start text-white text-lg font-bold font-['Inter']">
+          행사 정보
+        </h2>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {cardList.map((card, idx) => (
             <Card
