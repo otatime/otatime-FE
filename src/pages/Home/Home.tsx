@@ -1,54 +1,64 @@
+import CalendarBtn from './CalendarBtn'
 import Card from './Card'
 import HomeNav from './HomeNav'
-
-const imageList = [
-  'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80',
-  'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80',
-]
-
-const cardList = [
-  {
-    title: 'SPY×FAMILY - 2025년 8월 9일부터 개최! (가상)',
-    date: { start: '2025년 8월 9일', end: '2025년 8월 9일' },
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    tags: ['애니메이션', '게임'],
-    image: 'https://placehold.co/548x111',
-  },
-  {
-    title: 'SPY×FAMILY - 2025년 8월 9일부터 개최! (가상)',
-    date: { start: '2025년 8월 9일', end: '2025년 8월 9일' },
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    tags: ['애니메이션', '게임'],
-    image: 'https://placehold.co/548x111',
-  },
-  {
-    title: 'SPY×FAMILY - 2025년 8월 9일부터 개최! (가상)',
-    date: { start: '2025년 8월 9일', end: '2025년 8월 9일' },
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-    tags: ['애니메이션', '게임'],
-    image: 'https://placehold.co/548x111',
-  },
-]
+import { Calendar28 } from './PickerWithInput'
+import CategoryBtn from './CategoryBtn'
 
 export default function Home() {
+  const imageList = [
+    'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80',
+    'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80',
+  ]
+
+  const cardList = [
+    {
+      title: 'SPY×FAMILY - 2025년 8월 9일부터 개최! (가상)',
+      date: { start: '2025년 8월 9일', end: '2025년 8월 9일' },
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      tags: ['애니메이션', '게임'],
+      image: 'https://placehold.co/548x111',
+    },
+    {
+      title: 'SPY×FAMILY - 2025년 8월 9일부터 개최! (가상)',
+      date: { start: '2025년 8월 9일', end: '2025년 8월 9일' },
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      tags: ['애니메이션', '게임'],
+      image: 'https://placehold.co/548x111',
+    },
+    {
+      title: 'SPY×FAMILY - 2025년 8월 9일부터 개최! (가상)',
+      date: { start: '2025년 8월 9일', end: '2025년 8월 9일' },
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+      tags: ['애니메이션', '게임'],
+      image: 'https://placehold.co/548x111',
+    },
+  ]
+
+  const categoryList = [
+    { name: '전체', isClick: true },
+    { name: `애니메이션`, isClick: false },
+    { name: `게임`, isClick: false },
+  ]
+
   return (
     <div className="w-426 h-307 px-7 py-5 bg-neutral-900 ">
       {/* 카테고리 탭 */}
-      <nav className="flex gap-2 mb-4">
-        <button className="px-4 py-1 rounded bg-blue-500 text-white">
-          전체
-        </button>
-        <button className="px-4 py-1 rounded bg-[#18181B] text-gray-300">
-          애니메이션
-        </button>
-        <button className="px-4 py-1 rounded bg-[#18181B] text-gray-300">
-          게임
-        </button>
-      </nav>
+      <div className="h-12 flex justify-between items-center">
+        <div className="h-9 flex justify-start gap-1">
+          {categoryList.map((category, idx) => (
+            <CategoryBtn key={idx} isClick={categoryList[idx].isClick}>
+              {categoryList[idx].name}
+            </CategoryBtn>
+          ))}
+        </div>
+        <Calendar28 />
+        {/* <CalendarBtn /> */}
+      </div>
+
       <HomeNav
         images={imageList}
         className="w-full mx-auto h-72 overflow-hidden rounded-lg bg-black"
