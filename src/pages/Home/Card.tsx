@@ -1,4 +1,4 @@
-import { DateBadge } from '@/components'
+import { DateBadge, TagBadge } from '@/components'
 
 interface CardProps {
   title: string
@@ -29,21 +29,23 @@ export default function Card({
         </h2>
         <div className="flex justify-start items-center gap-1">
           <DateBadge date={date.start} />
-          <span className="text-gray-300 text-neutral-400 text-sm font-normal font-['Inter']">
+          <span className="text-neutral-400 text-sm font-normal font-['Inter']">
             부터
           </span>
           <DateBadge date={date.end} />
-          <span className="text-gray-300 text-neutral-400 text-sm font-normal font-['Inter']">
+          <span className="text-neutral-400 text-sm font-normal font-['Inter']">
             까지
           </span>
         </div>
         <div className="w-122 justify-start text-neutral-400 text-sm font-normal font-['Inter']">
           {description}
         </div>
-        <div>{tags.map((tag) => tag)}</div>
+        <div className="flex justify-start gap-1">
+          {tags.map((tag, idx) => (
+            <TagBadge key={idx}>#{tag}</TagBadge>
+          ))}
+        </div>
       </div>
-
-      {/*태그 */}
     </div>
   )
 }
