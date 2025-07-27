@@ -9,10 +9,11 @@ import {
   PopoverTrigger,
   Label,
 } from '@/components/UI'
-import { CalendarIcon } from 'lucide-react'
+import type { DateRange } from 'react-day-picker'
+
 import CalendarBtn from './CalendarBtn'
 
-function formatDate(date: Date | undefined) {
+const formatDate = (date: Date | undefined) => {
   if (!date) {
     return ''
   }
@@ -22,19 +23,25 @@ function formatDate(date: Date | undefined) {
     year: 'numeric',
   })
 }
-function isValidDate(date: Date | undefined) {
-  if (!date) {
-    return false
+
+const formatRangeDates = (range: { from?: Date; to?: Date }) => {
+  if (!range.from) {
+    return ''
   }
-  return !isNaN(date.getTime())
+  if (!range.to) {
+    return formatDate(range.from)
+  }
+  return `${formatDate(range.from)} ~ ${formatDate(range.to)}`
 }
+
 export function Calendar28() {
   const [open, setOpen] = React.useState(false)
-  const [date, setDate] = React.useState<Date | undefined>(
-    new Date('2025-06-01'),
-  )
-  const [month, setMonth] = React.useState<Date | undefined>(date)
-  const [value, setValue] = React.useState(formatDate(date))
+  const [selectedRange, setSelectedRange] = React.useState<
+    DateRange | undefined
+  >(undefined)
+  const [month, setMonth] = React.useState<Date | undefined>(new Date())
+  const [value, setValue] = React.useState('')
+
   return (
     <div className="flex flex-col">
       <Label htmlFor="date" className="hidden">
@@ -44,15 +51,10 @@ export function Calendar28() {
         <Input
           id="date"
           value={value}
-          placeholder="June 01, 2025"
-          className="bg-neutral-800 text-white border-neutral-500 pr-10"
+          placeholder="날짜를 선택하세요"
+          className="w-85 bg-neutral-800 text-white border-neutral-500 pr-10"
           onChange={(e) => {
-            const date = new Date(e.target.value)
             setValue(e.target.value)
-            if (isValidDate(date)) {
-              setDate(date)
-              setMonth(date)
-            }
           }}
           onKeyDown={(e) => {
             if (e.key === 'ArrowDown') {
@@ -69,7 +71,6 @@ export function Calendar28() {
               className="absolute top-1/2 right-2 size-6 -translate-y-1/2 hover:bg-neutral-800"
             >
               <CalendarBtn />
-              <span className="sr-only">Select date</span>
             </Button>
           </PopoverTrigger>
           <PopoverContent
@@ -79,15 +80,36 @@ export function Calendar28() {
             sideOffset={10}
           >
             <Calendar
-              mode="single"
-              selected={date}
+              mode="range"
+              selected={selectedRange}
               captionLayout="dropdown"
               month={month}
               onMonthChange={setMonth}
-              onSelect={(date) => {
-                setDate(date)
-                setValue(formatDate(date))
-                setOpen(false)
+              onSelect={(range) => {
+                setSelectedRange(range)
+
+                if (range?.from) {
+                  const fromFormatted = range.from.toLocaleDateString('en-US', {
+                    month: 'long',
+                    day: '2-digit',
+                    year: 'numeric',
+                  })
+                  console.log('시작일:', fromFormatted)
+
+                  if (range.to) {
+                    const toFormatted = range.to.toLocaleDateString('en-US', {
+                      month: 'long',
+                      day: '2-digit',
+                      year: 'numeric',
+                    })
+                    console.log('종료일:', toFormatted)
+                  }
+                  setValue(
+                    formatRangeDates(
+                      range || { from: undefined, to: undefined },
+                    ),
+                  )
+                }
               }}
             />
           </PopoverContent>
