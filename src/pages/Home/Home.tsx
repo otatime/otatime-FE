@@ -1,8 +1,9 @@
-import CalendarBtn from './CalendarBtn'
-import Card from './Card'
 import HomeNav from './HomeNav'
 import { Calendar28 } from './PickerWithInput'
-import CategoryBtn from './CategoryBtn'
+import Category from './Category'
+import CardList from './CardList'
+import dayjs from 'dayjs'
+import { useState } from 'react'
 
 export default function Home() {
   const imageList = [
@@ -10,56 +11,37 @@ export default function Home() {
     'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=800&q=80',
     'https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=800&q=80',
   ]
-
-  const cardList = [
+  const eventList = [
     {
       title: 'SPY×FAMILY - 2025년 8월 9일부터 개최! (가상)',
-      date: { start: '2025년 8월 9일', end: '2025년 8월 9일' },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      tags: ['애니메이션', '게임'],
-      image: 'https://placehold.co/548x111',
+      date: { start: '2025년 8월 9일', end: '2025년 8월 15일' },
     },
     {
-      title: 'SPY×FAMILY - 2025년 8월 9일부터 개최! (가상)',
-      date: { start: '2025년 8월 9일', end: '2025년 8월 9일' },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      tags: ['애니메이션', '게임'],
-      image: 'https://placehold.co/548x111',
+      title: '원피스 - 2025년 9월 20일부터 개최! (가상)',
+      date: { start: '2025년 9월 20일', end: '2025년 9월 25일' },
     },
     {
-      title: 'SPY×FAMILY - 2025년 8월 9일부터 개최! (가상)',
-      date: { start: '2025년 8월 9일', end: '2025년 8월 9일' },
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-      tags: ['애니메이션', '게임'],
-      image: 'https://placehold.co/548x111',
+      title: '나루토 - 2025년 10월 5일부터 개최! (가상)',
+      date: { start: '2025년 10월 5일', end: '2025년 10월 12일' },
     },
   ]
-
-  const categoryList = [
-    { name: '전체', isClick: true },
-    { name: `애니메이션`, isClick: false },
-    { name: `게임`, isClick: false },
-  ]
-
+  const [filterDate, setFilterDate] = useState({
+    start: new Date(),
+    end: new Date(),
+  })
   return (
-    <div className="w-426 h-307 px-7 py-5 bg-neutral-900 ">
+    <div className="w-426 h-full px-7 py-5 bg-neutral-900 ">
       {/* 카테고리 탭 */}
       <div className="h-12 flex justify-between items-center">
         <div className="h-9 flex justify-start gap-1">
-          {categoryList.map((category, idx) => (
-            <CategoryBtn key={idx} isClick={categoryList[idx].isClick}>
-              {categoryList[idx].name}
-            </CategoryBtn>
-          ))}
+          <Category />
         </div>
-        <Calendar28 />
+        <Calendar28 startDate={filterDate.start} endDate={filterDate.end} />
       </div>
-
+      {/* 다가오는 행사 */}
       <HomeNav
         images={imageList}
+        event={eventList}
         className="w-full mx-auto h-72 overflow-hidden rounded-lg bg-black"
       />
 
@@ -77,18 +59,7 @@ export default function Home() {
           행사 정보
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {cardList.map((card, idx) => (
-            <Card
-              key={idx}
-              title={card.title}
-              date={card.date}
-              description={card.description}
-              tags={card.tags}
-              image={card.image}
-            />
-          ))}
-        </div>
+        <CardList />
       </section>
     </div>
   )

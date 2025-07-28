@@ -6,6 +6,7 @@ interface CardProps {
   description: string
   tags: string[]
   image: string
+  className?: string
 }
 
 export default function Card({
@@ -14,9 +15,10 @@ export default function Card({
   description,
   tags,
   image,
+  className,
 }: CardProps) {
   return (
-    <div className="w-137 h-72 bg-neutral-800 rounded-[10px] border border-zinc-800">
+    <div className={`w-137 h-72 rounded-lg ${className}`}>
       <div>
         <img
           className="w-137 h-28 rounded-tl-[10px] rounded-tr-[10px]"

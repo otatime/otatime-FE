@@ -1,16 +1,18 @@
 import { Button } from '@/components'
-import { useState } from 'react'
+import { type PropsWithChildren } from 'react'
 
 export default function CategoryBtn({
   children,
   isClick = false,
-}: {
-  children: React.ReactNode
+  onClick,
+}: PropsWithChildren<{
   isClick: boolean
-}) {
-  const [click, setClick] = useState(isClick)
+  onClick?: () => void
+}>) {
   const handleClick = () => {
-    setClick(!click)
+    if (onClick) {
+      onClick()
+    }
   }
 
   return (
@@ -18,7 +20,7 @@ export default function CategoryBtn({
       className={`
         font-normal font-['Inter']
     ${
-      click
+      isClick
         ? 'bg-white text-neutral-900 hover:bg-white'
         : 'bg-neutral-900 text-white hover:bg-neutral-300 '
     }

@@ -1,13 +1,16 @@
 import { DateBadge } from '@/components'
-import dayjs from 'dayjs'
 import React, { useEffect, useRef, useState } from 'react'
 
 interface HomeNavProps {
   images: string[]
+  event: {
+    title: string
+    date: { start: string; end: string }
+  }[]
   className: string
 }
 
-export default function HomeNav({ images, className }: HomeNavProps) {
+export default function HomeNav({ images, event, className }: HomeNavProps) {
   const [current, setCurrent] = useState(1)
   const [transition, setTransition] = useState(true)
   const timeoutRef = useRef<number | null>(null)
@@ -97,19 +100,31 @@ export default function HomeNav({ images, className }: HomeNavProps) {
         {'>'}
       </button>
       <div className="absolute bottom-17 left-13 flex flex-col gap-2">
-        <h2 className="text-white text-2xl font-bold font-['Inter']">
-          SPYxFAMLY - 2025년 8월 9일부터 개최!
-        </h2>
-        <div className="flex justify-start items-center gap-1">
-          <DateBadge date={dayjs().format('YYYY년 MM월 DD일')} />
-          <span className="text-gray-300 text-neutral-400 text-sm font-normal font-['Inter']">
-            부터
-          </span>
-          <DateBadge date={dayjs().format('YYYY년 MM월 DD일')} />
-          <span className="text-gray-300 text-neutral-400 text-sm font-normal font-['Inter']">
-            까지
-          </span>
-        </div>
+        {(() => {
+          let actualIndex = current - 1
+          if (current === 0) actualIndex = total - 1
+          if (current === total + 1) actualIndex = 0
+
+          const currentEvent = event[actualIndex] || event[0]
+
+          return (
+            <div>
+              <h2 className="text-white text-2xl font-bold font-['Inter']">
+                {currentEvent.title}
+              </h2>
+              <div className="flex justify-start items-center gap-1">
+                <DateBadge date={currentEvent.date.start} />
+                <span className="text-gray-300 text-neutral-400 text-sm font-normal font-['Inter']">
+                  부터
+                </span>
+                <DateBadge date={currentEvent.date.end} />
+                <span className="text-gray-300 text-neutral-400 text-sm font-normal font-['Inter']">
+                  까지
+                </span>
+              </div>
+            </div>
+          )
+        })()}
       </div>
       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
         {images.map((_, idx) => (

@@ -34,13 +34,21 @@ const formatRangeDates = (range: { from?: Date; to?: Date }) => {
   return `${formatDate(range.from)} ~ ${formatDate(range.to)}`
 }
 
-export function Calendar28() {
+export function Calendar28({
+  startDate,
+  endDate,
+}: {
+  startDate: Date
+  endDate: Date
+}) {
   const [open, setOpen] = React.useState(false)
   const [selectedRange, setSelectedRange] = React.useState<
     DateRange | undefined
   >(undefined)
   const [month, setMonth] = React.useState<Date | undefined>(new Date())
-  const [value, setValue] = React.useState('')
+  const [value, setValue] = React.useState(
+    formatRangeDates({ from: startDate, to: endDate }),
+  )
 
   return (
     <div className="flex flex-col">
@@ -51,7 +59,7 @@ export function Calendar28() {
         <Input
           id="date"
           value={value}
-          placeholder="날짜를 선택하세요"
+          placeholder={value}
           className="w-85 bg-neutral-800 text-white border-neutral-500 pr-10"
           onChange={(e) => {
             setValue(e.target.value)
@@ -68,13 +76,13 @@ export function Calendar28() {
             <Button
               id="date-picker"
               variant="ghost"
-              className="absolute top-1/2 right-2 size-6 -translate-y-1/2 hover:bg-neutral-800"
+              className="absolute top-1/2 right-2 size-6 -translate-y-1/2 hover:bg-gray-700"
             >
               <CalendarBtn />
             </Button>
           </PopoverTrigger>
           <PopoverContent
-            className="w-auto overflow-hidden p-0"
+            className="w-auto overflow-hidden p-0 bg-neutral-800 text-white"
             align="end"
             alignOffset={-8}
             sideOffset={10}
