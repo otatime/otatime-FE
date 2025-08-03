@@ -6,7 +6,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from '@/components/UI/pagination'
+} from '@/components'
 import { useState } from 'react'
 
 export default function CardList() {
