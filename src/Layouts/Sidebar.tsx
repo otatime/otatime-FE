@@ -5,7 +5,7 @@ import CalendarIcon from '@/assets/icons/calendar.svg?react'
 import ChatIcon from '@/assets/icons/chat.svg?react'
 import DocumentIcon from '@/assets/icons/document.svg?react'
 import HeartIcon from '@/assets/icons/Vectorheart.svg?react'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/UI/Avatar'
 
 type SidebarProps = {
   className?: string

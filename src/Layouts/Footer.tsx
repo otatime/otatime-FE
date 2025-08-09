@@ -1,7 +1,6 @@
 // src/components/Footer.tsx
 import { Facebook, Instagram, X as Twitter } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
+import { Button, Separator } from '@/components'
 
 const Footer = () => {
   return (

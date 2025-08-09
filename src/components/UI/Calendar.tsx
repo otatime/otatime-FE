@@ -7,7 +7,7 @@ import {
 import { DayButton, DayPicker, getDefaultClassNames } from 'react-day-picker'
 
 import { cn } from '@/lib/utils'
-import { Button } from './button'
+import { Button } from './Button'
 import { ButtonVariants } from '../Contants'
 
 const buttonVariants = ButtonVariants()
