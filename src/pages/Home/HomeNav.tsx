@@ -1,5 +1,5 @@
 import { DateBadge } from '@/components'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface HomeNavProps {
   images: string[]
@@ -114,11 +114,11 @@ export default function HomeNav({ images, event, className }: HomeNavProps) {
               </h2>
               <div className="flex justify-start items-center gap-1">
                 <DateBadge date={currentEvent.date.start} />
-                <span className="text-gray-300 text-neutral-400 text-sm font-normal font-['Inter']">
+                <span className="text-gray-300  text-sm font-normal font-['Inter']">
                   부터
                 </span>
                 <DateBadge date={currentEvent.date.end} />
-                <span className="text-gray-300 text-neutral-400 text-sm font-normal font-['Inter']">
+                <span className="text-gray-300  text-sm font-normal font-['Inter']">
                   까지
                 </span>
               </div>
