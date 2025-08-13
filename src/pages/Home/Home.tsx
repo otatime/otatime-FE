@@ -2,7 +2,7 @@ import HomeNav from './HomeNav'
 import { Calendar28 } from './PickerWithInput'
 import Category from './Category'
 import CardList from './CardList'
-import dayjs from 'dayjs'
+// import dayjs from 'dayjs'
 import { useState } from 'react'
 
 export default function Home() {
@@ -25,7 +25,8 @@ export default function Home() {
       date: { start: '2025년 10월 5일', end: '2025년 10월 12일' },
     },
   ]
-  const [filterDate, setFilterDate] = useState({
+
+  const [filterDate] = useState({
     start: new Date(),
     end: new Date(),
   })
