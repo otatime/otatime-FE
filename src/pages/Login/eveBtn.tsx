@@ -1,3 +1,6 @@
+import eve from '@/assets/icons/eve.svg'
+import closeEve from '@/assets/icons/closeEve.svg'
+
 interface EveBtnProps {
   onClick: () => void
   className?: string
@@ -15,13 +18,9 @@ export function EveBtn({ onClick, className, isEve = false }: EveBtnProps) {
       type="button"
     >
       {!isEve ? (
-        <img
-          src="/assets/closeEve.svg"
-          alt="close eve icon"
-          className="w-5 h-6"
-        />
+        <img src={closeEve} alt="close eve icon" className="w-5 h-6" />
       ) : (
-        <img src="/assets/eve.svg" alt="eve icon" className="w-5 h-5" />
+        <img src={eve} alt="eve icon" className="w-5 h-5" />
       )}
     </button>
   )
