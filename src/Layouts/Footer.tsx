@@ -1,6 +1,11 @@
 // src/components/Footer.tsx
-import { Facebook, Instagram, X as Twitter } from 'lucide-react'
+
 import { Button, Separator } from '@/components'
+import xIcon from '@/assets/icons/xicon.svg'
+import fIcon from '@/assets/icons/facebook.svg'
+import iIcon from '@/assets/icons/instagram.svg'
+import appStore from '@/assets/icons/applestore.svg'
+import googlePlay from '@/assets/icons/googleplay.svg'
 
 const Footer = () => {
   return (
@@ -9,28 +14,31 @@ const Footer = () => {
         {/* Left Section */}
         <div className="flex flex-col gap-4 flex-1">
           <div className="text-lg font-bold">OTATIME</div>
-          <p className="text-sm text-zinc-400">오타타임 설명, 오타타임 설명</p>
+          <p className="text-sm text-zinc-400">
+            <strong>오타타임</strong>은 서브컬처 행사를 한곳에 모아, 달력으로
+            보고 빠르게 검색할 수 있는 플랫폼입니다.
+          </p>
           <div className="flex gap-3 mt-2">
             <Button
               size="icon"
               variant="ghost"
               className="rounded-md bg-zinc-800 hover:bg-zinc-700"
             >
-              <Facebook className="h-5 w-5 text-white" />
+              <img src={fIcon} alt="X" className="h-5 w-5" />
             </Button>
             <Button
               size="icon"
               variant="ghost"
               className="rounded-md bg-zinc-800 hover:bg-zinc-700"
             >
-              <Instagram className="h-5 w-5 text-white" />
+              <img src={iIcon} alt="X" className="h-5 w-5" />
             </Button>
             <Button
               size="icon"
               variant="ghost"
               className="rounded-md bg-zinc-800 hover:bg-zinc-700"
             >
-              <Twitter className="h-5 w-5 text-white" />
+              <img src={xIcon} alt="X" className="h-5 w-5" />
             </Button>
           </div>
           <p className="text-xs text-zinc-500 mt-6 px-2 py-1 bg-zinc-800 rounded">
@@ -67,12 +75,12 @@ const Footer = () => {
         {/* Right Section - App Buttons */}
         <div className="flex flex-col gap-4 flex-1">
           <img
-            src="/assets/appstore-badge.svg"
+            src={appStore}
             alt="Download on the App Store"
             className="w-[10rem]"
           />
           <img
-            src="/assets/googleplay-badge.png"
+            src={googlePlay}
             alt="Get it on Google Play"
             className="w-[10rem]"
           />
