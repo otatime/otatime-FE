@@ -5,7 +5,7 @@ import CalendarIcon from '@/assets/icons/calendar.svg?react'
 import ChatIcon from '@/assets/icons/chat.svg?react'
 import DocumentIcon from '@/assets/icons/document.svg?react'
 import HeartIcon from '@/assets/icons/Vectorheart.svg?react'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/UI/Avatar'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/UI/avatar'
 
 type SidebarProps = {
   className?: string
@@ -49,7 +49,8 @@ const Sidebar = ({ className = '' }: SidebarProps) => {
 
   return (
     <aside
-      className={`w-[4.31rem] min-h-screen bg-zinc-900 text-white border-r border-zinc-800 flex flex-col items-center py-6 ${className}`}
+      className={`w-[4.31rem] h-full bg-zinc-900 text-white border-r border-zinc-800
+                  flex flex-col items-center py-6 ${className}`} // ⬅️ min-h-screen → h-full
     >
       <nav className="flex flex-col items-center gap-6">
         {/* 상단 메뉴 */}
