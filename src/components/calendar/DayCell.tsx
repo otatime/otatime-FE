@@ -8,6 +8,7 @@ type Props = {
   today: Date
   eventsByDate?: Record<string, CalEvent[]>
   isFocus?: boolean
+  onEventClick?: (info: { date: string; event: CalEvent }) => void // ✅ 추가
 }
 
 export default function DayCell({
@@ -16,6 +17,7 @@ export default function DayCell({
   today,
   eventsByDate,
   isFocus,
+  onEventClick,
 }: Props) {
   const ymd = toYMD(date)
   const events = eventsByDate?.[ymd] ?? []
@@ -59,7 +61,12 @@ export default function DayCell({
       {/* 이벤트 배너칩 - 배경이미지 버전 */}
       <div className="mt-8 flex flex-col gap-[15px]">
         {events.map((ev) => (
-          <EventChip key={ev.id} title={ev.title} coverUrl={ev.coverUrl} />
+          <EventChip
+            key={ev.id}
+            title={ev.title}
+            coverUrl={ev.coverUrl}
+            onClick={() => onEventClick?.({ date: ymd, event: ev })} // ✅ 클릭 시 상위로 전달
+          />
         ))}
       </div>
     </div>
