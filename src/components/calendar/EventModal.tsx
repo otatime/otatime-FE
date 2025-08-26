@@ -76,7 +76,7 @@ export default function EventsModal({
     <div className="fixed inset-0 z-[100] flex items-center justify-center">
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/60" onClick={onClose} />
-      {/* 모달 컨테이너 (요구 스펙) */}
+      {/* 모달 컨테이너 */}
       <div
         ref={dialogRef}
         role="dialog"
@@ -110,7 +110,7 @@ export default function EventsModal({
         </div>
 
         {/* 리스트 영역 */}
-        <div className="flex-1 overflow-y-auto mt-4 space-y-4">
+        <div className="flex-1 overflow-y-auto mt-4 space-y-4 scroll-smooth">
           {events.map((ev, i) => (
             <div key={ev.id}>
               <EventRow item={ev} />
@@ -129,7 +129,8 @@ function EventRow({ item }: { item: EventItem }) {
   const { coverUrl, title, subtitle, description, tags = [], liked } = item
 
   return (
-    <div className="flex items-start gap-6">
+    // 하트 절대배치용 relative
+    <div className="relative flex items-start gap-6">
       {/* 썸네일 (12.5625rem × 8.125rem) */}
       <img
         src={coverUrl}
@@ -137,35 +138,23 @@ function EventRow({ item }: { item: EventItem }) {
         className="w-[12.5625rem] h-[8.125rem] object-cover rounded-[0.625rem] flex-shrink-0"
       />
 
-      {/* 본문 */}
-      <div className="flex-1 min-w-0">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <h3 className="text-white font-bold text-base truncate">
-              {title}
-              {subtitle && (
-                <span className="ml-1 text-white/80 font-medium">
-                  {' '}
-                  - {subtitle}
-                </span>
-              )}
-            </h3>
-            {description && (
-              <p className="mt-2 text-[#8D8D8D] text-sm font-normal">
-                {description}
-              </p>
-            )}
-          </div>
+      {/* 본문: 하트와 안 겹치도록 우측 여백 확보 */}
+      <div className="flex-1 min-w-0 pr-14">
+        <h3 className="text-white font-bold text-base truncate">
+          {title}
+          {subtitle && (
+            <span className="ml-1 text-white/80 font-medium">
+              {' '}
+              - {subtitle}
+            </span>
+          )}
+        </h3>
 
-          {/* 공통 하트 버튼 사용 (Uncontrolled 예시) */}
-          <Wishheart
-            initialLiked={!!liked}
-            onToggle={() => {
-              // 필요 시 상위로 전달/토스트 처리 등
-              // console.log('liked:', v)
-            }}
-          />
-        </div>
+        {description && (
+          <p className="mt-2 text-[#8D8D8D] text-sm font-normal">
+            {description}
+          </p>
+        )}
 
         {tags.length > 0 && (
           <div className="mt-3 flex flex-wrap gap-2">
@@ -179,6 +168,11 @@ function EventRow({ item }: { item: EventItem }) {
             ))}
           </div>
         )}
+      </div>
+
+      {/* 하트: 우상단 고정 */}
+      <div className="absolute top-2 right-2">
+        <Wishheart initialLiked={!!liked} />
       </div>
     </div>
   )
