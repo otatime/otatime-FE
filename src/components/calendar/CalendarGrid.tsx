@@ -2,9 +2,18 @@ import DayCell from './DayCell'
 import type { CalEvent } from './types'
 import { getMonthMatrix, toYMD } from './types'
 
-type Props = { viewDate: Date; events?: CalEvent[] }
+type Props = {
+  viewDate: Date
+  events?: CalEvent[]
+  onEventClick?: (info: { date: string; event: CalEvent }) => void // ✅ 추가
+}
 
-export default function CalendarGrid({ viewDate, events = [] }: Props) {
+export default function CalendarGrid({
+  viewDate,
+  events = [],
+  onEventClick,
+}: Props) {
+  // ✅ 받기
   const matrix = getMonthMatrix(viewDate)
   const currentMonth = viewDate.getMonth()
   const today = new Date()
@@ -23,8 +32,8 @@ export default function CalendarGrid({ viewDate, events = [] }: Props) {
           inCurrentMonth={d.getMonth() === currentMonth}
           today={today}
           eventsByDate={eventsByDate}
-          // 예시로 19일만 초점 스타일
           isFocus={d.getDate() === 19 && d.getMonth() === currentMonth}
+          onEventClick={onEventClick} // ✅ 그대로 전달
         />
       ))}
     </div>

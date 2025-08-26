@@ -3,6 +3,12 @@ export type CalEvent = {
   date: string // 'YYYY-MM-DD'
   title: string
   coverUrl?: string
+  /** 선택: 모달 본문 */
+  desc?: string
+  /** 선택: 태그 칩 */
+  tags?: string[]
+  /** 선택: 관심표시 */
+  liked?: boolean
 }
 
 export type MonthInfo = { year: number; month: number } // 0-11
