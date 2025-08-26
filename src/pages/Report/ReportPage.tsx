@@ -110,8 +110,12 @@ const ReportPage = () => {
               className={upperSelectCx}
             >
               <option value="">선택되지 않음</option>
-              <option value="cat1">카테고리1</option>
-              <option value="cat2">카테고리2</option>
+              <option value="cat1">게임</option>
+              <option value="cat2">애니메이션</option>
+              <option value="cat2">행사</option>
+              <option value="cat2">공연</option>
+              <option value="cat2">캐릭터</option>
+              <option value="cat2">성우 행사</option>
             </select>
             {upperInvalid && (
               <p className="mt-1 text-[13px] text-red-400">
@@ -146,8 +150,14 @@ const ReportPage = () => {
               className={selectCx}
             >
               <option value="">선택되지 않음</option>
-              <option value="sub1">하위1</option>
-              <option value="sub2">하위2</option>
+              <option value="sub1">콜라보 카페</option>
+              <option value="sub2">팝업스토어</option>
+              <option value="sub2">전시회</option>
+              <option value="sub2">코스프레</option>
+              <option value="sub2">극장판</option>
+              <option value="sub2">밴드</option>
+              <option value="sub2">DJ</option>
+              <option value="sub2">오케스트라</option>
             </select>
           </div>
 

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import HomeIcon from '@/assets/icons/home.svg?react'
 import CalendarIcon from '@/assets/icons/calendar.svg?react'
-import ChatIcon from '@/assets/icons/chat.svg?react'
+// import ChatIcon from '@/assets/icons/chat.svg?react'
 import DocumentIcon from '@/assets/icons/document.svg?react'
 import HeartIcon from '@/assets/icons/Vectorheart.svg?react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/UI/avatar'
@@ -31,11 +31,11 @@ const Sidebar = ({ className = '' }: SidebarProps) => {
       icon: <DocumentIcon className="w-[18px] h-[18px]" />,
       path: '/report',
     },
-    {
-      label: '피드백',
-      icon: <ChatIcon className="w-[18px] h-[18px]" />,
-      path: '/feedback',
-    },
+    // {
+    //   label: '피드백',
+    //   icon: <ChatIcon className="w-[18px] h-[18px]" />,
+    //   path: '/feedback',
+    // },
   ]
 
   const lowerMenuItems = [
@@ -49,7 +49,7 @@ const Sidebar = ({ className = '' }: SidebarProps) => {
 
   return (
     <aside
-      className={`w-[4.31rem] h-full bg-zinc-900 text-white border-r border-zinc-800
+      className={`w-[4.31rem] h-auto bg-zinc-900 text-white border-r border-zinc-800
                   flex flex-col items-center py-6 ${className}`} // ⬅️ min-h-screen → h-full
     >
       <nav className="flex flex-col items-center gap-6">

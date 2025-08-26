@@ -1,3 +1,4 @@
+// src/Layouts/MainLayout.tsx
 import { Outlet } from 'react-router'
 import Header from '@/Layouts/Header'
 import Sidebar from '@/Layouts/Sidebar'
@@ -5,14 +6,12 @@ import Footer from './Footer'
 
 export default function MainLayout() {
   return (
-    <div className="relative bg-black text-white">
+    <div className="relative min-h-screen bg-background text-foreground">
       <Header />
-      {/* 헤더 높이만큼 아래로 내려서 시작 */}
-      <div className="flex  min-h-screen">
-        {/* 왼쪽 사이드바 */}
+      <div className="flex min-h-[calc(100vh-56px)]">
+        {' '}
+        {/* 필요 시 헤더 높이에 맞춤 */}
         <Sidebar />
-
-        {/* 오른쪽 컨텐츠 영역 */}
         <main className="flex-1 overflow-auto">
           <Outlet />
         </main>
