@@ -5,8 +5,11 @@ import ReportPage from '@/pages/Report/ReportPage'
 import WishPage from '@/pages/Wish/WishPage'
 import SearchResultPage from '@/pages/Home/SearchResultPage'
 import Calendar from '@/pages/Calendar/Calendar'
-import Feedback from '@/pages/Feedback/Feedback'
-import User from '@/pages/User/user'
+// import Feedback from '@/pages/Feedback/Feedback'
+import User from '@/pages/User/User'
+import AdminHome from '@/pages/Admin/AdminHome'
+import AdminReport from '@/pages/Admin/AdminReport'
+import AdminUser from '@/pages/Admin/AdminUser'
 export default function Router() {
   return (
     <BrowserRouter>
@@ -18,8 +21,11 @@ export default function Router() {
           <Route path="/report" element={<ReportPage />} />
           <Route path="/wish" element={<WishPage />} />
           <Route path="/calendar" element={<Calendar />} />
-          <Route path="/feedback" element={<Feedback />} />
+          {/* <Route path="/feedback" element={<Feedback />} /> */}
           <Route path="/user" element={<User />} />
+          <Route path="/admin" element={<AdminHome />} />
+          <Route path="/adminReport" element={<AdminReport />} />
+          <Route path="/adminUser" element={<AdminUser />} />
         </Route>
       </Routes>
     </BrowserRouter>

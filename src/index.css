@@ -1,7 +1,7 @@
 @import 'tailwindcss';
 
 /* === Theme tokens (Shadcn 권장 팔레트) === */
-@layer base {
+/* @layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
@@ -57,13 +57,13 @@
     --accent-foreground: 0 0% 98%;
 
     --ring: 217.2 91.2% 59.8%;
-  }
+  } */
 
-  /* 테마 적용의 핵심: body를 토큰으로 칠합니다 */
-  * {
+/* 테마 적용의 핵심: body를 토큰으로 칠합니다 */
+/* * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
   }
-}
+} */

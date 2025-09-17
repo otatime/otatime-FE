@@ -6,6 +6,7 @@ import fIcon from '@/assets/icons/facebook.svg'
 import iIcon from '@/assets/icons/instagram.svg'
 import appStore from '@/assets/icons/applestore.svg'
 import googlePlay from '@/assets/icons/googleplay.svg'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -64,6 +65,9 @@ const Footer = () => {
           <a href="#" className="text-sm text-zinc-400 hover:underline">
             개인정보처리방침
           </a>
+          <Link to="/admin" className="text-sm text-zinc-400 hover:underline">
+            관리자
+          </Link>
         </div>
 
         {/* Vertical Separator */}

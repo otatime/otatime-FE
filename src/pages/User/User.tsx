@@ -8,6 +8,7 @@ import { RadioGroup, RadioGroupItem } from '@/components/UI/radio-group'
 import { Separator } from '@/components/UI/separator'
 import { ExternalLink, ChevronRight, LogOut, Pencil, Heart } from 'lucide-react'
 import { useTheme } from 'next-themes'
+import { Link } from 'react-router-dom'
 
 export default function User() {
   const { theme, setTheme, systemTheme, resolvedTheme } = useTheme()
@@ -51,6 +52,7 @@ export default function User() {
           {/* Profile / Wish */}
           <Card className="bg-card border border-border">
             <CardContent className="p-0">
+              {/* 프로필 수정 (버튼 유지) */}
               <button
                 type="button"
                 className="group flex w-full items-center justify-between px-5 py-4 text-left transition hover:bg-muted"
@@ -64,8 +66,9 @@ export default function User() {
 
               <Separator className="bg-border" />
 
-              <button
-                type="button"
+              {/* ✅ 전체 행을 Link로 변경 */}
+              <Link
+                to="/wish"
                 className="group flex w-full items-center justify-between px-5 py-4 text-left transition hover:bg-muted"
               >
                 <div className="flex items-center gap-3">
@@ -73,7 +76,7 @@ export default function User() {
                   <span className="text-sm">찜 목록</span>
                 </div>
                 <ChevronRight className="h-4 w-4 text-foreground/60 group-hover:text-foreground" />
-              </button>
+              </Link>
             </CardContent>
           </Card>
 
