@@ -1,12 +1,12 @@
 // src/Layouts/AdminLayout.tsx
 import { Outlet } from 'react-router-dom'
-import Header from '@/Layouts/Header' // 필요 없으면 지워도 됨
+import AdminHeader from '@/Layouts/AdminHeaer'
 import AdminSidebar from '@/Layouts/AdminSidebar'
 
 export default function AdminLayout() {
   return (
     <div className="relative min-h-screen bg-[#141414] text-white">
-      <Header /> {/* 공통 헤더를 쓰지 않으면 제거하세요 */}
+      <AdminHeader />
       <div className="flex min-h-[calc(100svh-56px)]">
         {' '}
         {/* 헤더 높이 56px 기준 */}
