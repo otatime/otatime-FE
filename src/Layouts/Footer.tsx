@@ -65,7 +65,10 @@ const Footer = () => {
           <a href="#" className="text-sm text-zinc-400 hover:underline">
             개인정보처리방침
           </a>
-          <Link to="/admin" className="text-sm text-zinc-400 hover:underline">
+          <Link
+            to="/adminHome"
+            className="text-sm text-zinc-400 hover:underline"
+          >
             관리자
           </Link>
         </div>

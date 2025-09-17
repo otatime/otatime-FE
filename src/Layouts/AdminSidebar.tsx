@@ -1,124 +1,53 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+// src/Layouts/AdminSidebar.tsx
+import React from 'react'
+import { NavLink } from 'react-router-dom'
 import HomeIcon from '@/assets/icons/home.svg?react'
-import CalendarIcon from '@/assets/icons/calendar.svg?react'
-// import ChatIcon from '@/assets/icons/chat.svg?react'
 import DocumentIcon from '@/assets/icons/document.svg?react'
-import HeartIcon from '@/assets/icons/Vectorheart.svg?react'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/UI/avatar'
+import UserIcon from '@/assets/icons/user.svg?react'
 
-type SidebarProps = {
-  className?: string
-}
+type SidebarProps = { className?: string }
+type SvgComp = React.FC<React.SVGProps<SVGSVGElement>>
+type MenuItem = { label: string; to: string; Icon: SvgComp; end?: boolean }
 
-const Sidebar = ({ className = '' }: SidebarProps) => {
-  const [active, setActive] = useState('홈')
-  const navigate = useNavigate()
+const menu: ReadonlyArray<MenuItem> = [
+  { label: '관리자 홈', to: '/adminHome', Icon: HomeIcon, end: true },
+  { label: '사용자', to: '/adminUser', Icon: UserIcon },
+  { label: '제보', to: '/adminReport', Icon: DocumentIcon },
+]
 
-  const menuItems = [
-    {
-      label: '홈',
-      icon: <HomeIcon className="w-[18px] h-[18px]" />,
-      path: '/',
-    },
-    {
-      label: '달력',
-      icon: <CalendarIcon className="w-[18px] h-[18px]" />,
-      path: '/calendar',
-    },
-    {
-      label: '행사 제보',
-      icon: <DocumentIcon className="w-[18px] h-[18px]" />,
-      path: '/report',
-    },
-    // {
-    //   label: '피드백',
-    //   icon: <ChatIcon className="w-[18px] h-[18px]" />,
-    //   path: '/feedback',
-    // },
-  ]
-
-  const lowerMenuItems = [
-    { label: '사용자', isAvatar: true, path: '/user' },
-    {
-      label: '찜 목록',
-      icon: <HeartIcon className="w-[18px] h-[18px]" />,
-      path: '/wish',
-    },
-  ]
-
+export default function AdminSidebar({ className = '' }: SidebarProps) {
   return (
     <aside
-      className={`w-[4.31rem] h-auto bg-zinc-900 text-white border-r border-zinc-800
-                  flex flex-col items-center py-6 ${className}`} // ⬅️ min-h-screen → h-full
+      className={`w-[4.31rem] bg-zinc-900 text-white border-r border-zinc-800
+                  flex flex-col items-center py-6 ${className}`}
     >
       <nav className="flex flex-col items-center gap-6">
-        {/* 상단 메뉴 */}
-        {menuItems.map((item) => (
-          <button
-            key={item.label}
-            onClick={() => {
-              setActive(item.label)
-              navigate(item.path)
-            }}
-            className={`flex flex-col items-center gap-2 text-[13px] font-normal ${
-              active === item.label
-                ? 'text-white'
-                : 'text-neutral-400 hover:text-white'
-            }`}
+        {menu.map(({ label, to, Icon, end }) => (
+          <NavLink
+            key={label}
+            to={to}
+            end={!!end} // 홈만 완전 일치
+            className={({ isActive }) =>
+              `group flex flex-col items-center gap-2 text-[13px] font-normal ${
+                isActive ? 'text-white' : 'text-neutral-400 hover:text-white'
+              }`
+            }
           >
-            <div
-              className={`p-2.5 rounded-[10px]  ${
-                active === item.label ? 'bg-zinc-800' : ''
-              }`}
-            >
-              {item.icon}
-            </div>
-            <span className="text-[13px] leading-none text-center whitespace-nowrap">
-              {item.label}
-            </span>
-          </button>
-        ))}
-
-        {/* 구분선 */}
-        <div className="w-6 border-t border-white-800 my-2" />
-
-        {/* 하단 메뉴 */}
-        {lowerMenuItems.map((item) => (
-          <button
-            key={item.label}
-            onClick={() => {
-              setActive(item.label)
-              navigate(item.path)
-            }}
-            className={`flex flex-col items-center gap-2 text-[13px] font-normal ${
-              active === item.label
-                ? 'text-white'
-                : 'text-neutral-400 hover:text-white'
-            }`}
-          >
-            <div
-              className={`p-2.5 rounded-[10px] ${
-                active === item.label ? 'bg-zinc-800' : ''
-              }`}
-            >
-              {item.isAvatar ? (
-                <Avatar className="w-7 h-7">
-                  <AvatarImage src="https://github.com/shadcn.png" />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-              ) : (
-                item.icon
-              )}
-            </div>
-            <span className="text-[13px] leading-none text-center whitespace-nowrap">
-              {item.label}
-            </span>
-          </button>
+            {({ isActive }) => (
+              <>
+                <div
+                  className={`p-2.5 rounded-[10px] ${
+                    isActive ? 'bg-zinc-800' : ''
+                  }`}
+                >
+                  <Icon className="w-[18px] h-[18px]" aria-hidden="true" />
+                </div>
+                <span className="leading-none whitespace-nowrap">{label}</span>
+              </>
+            )}
+          </NavLink>
         ))}
       </nav>
     </aside>
   )
 }
-
-export default Sidebar
