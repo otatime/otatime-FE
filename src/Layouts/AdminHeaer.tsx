@@ -18,10 +18,7 @@ const AdminHeader: React.FC<HeaderProps> = ({ className = '' }) => {
       {/* 왼쪽: 로고 + ADMIN 뱃지 */}
       <div className="w-full max-w-[111.75rem] px-6 flex items-center justify-between">
         <div className="flex items-center gap-6 ml-[0.9375rem] mt-[0.5625rem]">
-          <button
-            onClick={() => navigate('/adminHome')}
-            className="focus:outline-none"
-          >
+          <button onClick={() => navigate('/')} className="focus:outline-none">
             <img src={Logo} alt="Logo" className="h-13 w-auto" />
           </button>
         </div>
