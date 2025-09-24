@@ -8,6 +8,7 @@ import ReportPage from '@/pages/Report/ReportPage'
 import User from '@/pages/User/User'
 import Wish from '@/pages/Wish/WishPage'
 import Calendar from '@/pages/Calendar/Calendar'
+import SearchResultPage from '@/pages/Home/SearchResultPage'
 
 // Admin pages
 import AdminHome from '@/pages/Admin/AdminHome'
@@ -25,6 +26,7 @@ export function Router() {
           <Route path="report" element={<ReportPage />} />
           <Route path="user" element={<User />} />
           <Route path="wish" element={<Wish />} />
+          <Route path="search" element={<SearchResultPage />} />
         </Route>
 
         {/* 관리자 레이아웃: 자식들을 '절대 경로'로 선언 */}
